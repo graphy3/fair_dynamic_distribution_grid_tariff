@@ -1,0 +1,8 @@
+# Large data files (over GitHub's 100 MB limit)
+data_hourly.csv
+iFlex_merged_data.csv
+
+# Python / Jupyter / macOS
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store

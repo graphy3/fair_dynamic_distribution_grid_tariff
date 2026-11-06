@@ -1,0 +1,49 @@
+{
+  "PATHS": {
+    "RAW_DATA_PATH": "data_hourly.csv",
+    "MERGED_DATA_PATH": "iFlex_merged_data.csv",
+    "MERGED_OUTPUT_PATH": "iFlex_merged_data.csv",
+    "TUNING_RESULTS_PATH": "tuning_results.csv",
+    "VALIDATION_RESULTS_PATH": "validation_kernel_results.csv",
+    "RAW_XGB_RESULTS_PATH": "raw_xgb_results.csv",
+    "FINAL_RESULTS_PATH": "final_kernel_results.csv"
+  },
+  "aggregation_columns": [
+    "TimeStep",
+    "From",
+    "Date",
+    "Hour",
+    "Group",
+    "Demand_kWh",
+    "Price_NOK_kWh",
+    "Power_Price_NOK_kWh",
+    "Price_signal",
+    "Experiment_price_NOK_kWh",
+    "Temperature",
+    "Temperature24"
+    ],
+  "candidate_feature_sets": {
+    "time": ["sin_hour", "cos_hour", "sin_weekday", "cos_weekday"],
+    "time_24h_avg_temperature": ["sin_hour", "cos_hour", "sin_weekday", "cos_weekday", "temperature_24h_avg"],
+    "time_observed_temperature": ["sin_hour", "cos_hour", "sin_weekday", "cos_weekday", "temperature"],
+    "time_weather": ["sin_hour", "cos_hour", "sin_weekday", "cos_weekday", "temperature_24h_avg", "temperature"],
+    "time_weather_price": ["sin_hour", "cos_hour", "sin_weekday", "cos_weekday", "temperature_24h_avg", "temperature", "Energy_Price_NOK_kWh"]
+    },
+  "candidate_K": [5, 10, 20, 40, 80],
+  "candidate_sigma": [0.25, 0.5, 1.0, 2.0, 4.0],
+  "candidate_xg_boost_params": {
+    "n_estimators": [100, 300],
+    "max_depth": [2, 4],
+    "learning_rate": [0.03, 0.1],
+    "min_child_weight": [5, 15],
+    "subsample": [0.9],
+    "colsample_bytree": [1.0],
+    "reg_alpha": [0.0],
+    "reg_lambda": [1.0, 10.0]
+  },
+  "tuning_metric": "MAE",
+  "scenario_levels": [0.05, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.95],
+  "price_elasticity": -0.0292,
+  "grid_charge": 0.5,
+  "eur_to_nok": 10.3435
+}
